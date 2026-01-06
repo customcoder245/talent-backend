@@ -17,11 +17,12 @@ app.use(cookieParser());
 // Enable CORS
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL ||  "*",
+    origin: "https://talent-by-design.vercel.app/",
+    
     credentials: true
   })
 );
-
+// origin: process.env.FRONTEND_URL ||  "*",
 // Health check route
 app.get("/api/v1/test", (req, res) => {
   res.status(200).json({
