@@ -17,9 +17,7 @@ app.use(cookieParser());
 // Enable CORS
 app.use(
   cors({
-    // origin: "https://talent-by-design.vercel.app/",
-    origin: 'https://talent-by-design.vercel.app',
-    credentials: true
+    origin: 'https://talent-by-design.vercel.app'
   })
 );
 
