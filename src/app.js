@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import assessmentRoutes from "./routes/assessment.routes.js";
 import questionRoutes from "./routes/question.routes.js";
-
+import responseRoutes from "./routes/response.routes.js";
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(
   cors({
     // origin: "https://talent-by-design.vercel.app/",
-    origin: process.env.FRONTEND_URL ||  "*",
+    origin: 'https://talent-by-design.vercel.app',
     credentials: true
   })
 );
@@ -35,6 +35,7 @@ app.get("/api/v1/test", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/assessment", assessmentRoutes);
 app.use("/api/v1/questions", questionRoutes);
+app.use("/api/v1/responses", responseRoutes);
 
 
 export { app };
