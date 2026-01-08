@@ -35,5 +35,4 @@ app.use("/api/v1/assessment", assessmentRoutes);
 app.use("/api/v1/questions", questionRoutes);
 app.use("/api/v1/responses", responseRoutes);
 
-
 export { app };
