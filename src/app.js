@@ -17,7 +17,7 @@ app.use(cookieParser());
 // Enable CORS
 app.use(
   cors({
-    origin: 'https://tbd-frontend-bice.vercel.app/' || process.env.FRONTEND_URL
+    origin: 'https://tbd-frontend-bice.vercel.app/' 
  
   })
 );
