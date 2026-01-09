@@ -13,30 +13,29 @@ const app = express();
 // Parse incoming JSON requests
 app.use(express.json());
 app.use(cookieParser());
-
 const allowedOrigins = [
-  'http://localhost:5173',               // Development origin
-  'https://tbd-frontend-bice.vercel.app'  // Production origin
+  'http://localhost:5173',                
+  'https://tbd-frontend-bice.vercel.app'   
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        // Allow the request if the origin is valid or if it's a direct (no-origin) request
-        callback(null, true);
-      } else {
-        callback(new Error(`CORS policy: Origin '${origin}' is not allowed`), false);
+      // Allow requests with no origin (e.g., mobile apps, curl, Postman)
+      if (!origin) {
+        return callback(null, true);
       }
+
+      // Check if the origin is in the allowedOrigins array
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        return callback(null, true);
+      }
+
+      // Reject other origins with a more informative error message
+      return callback(new Error(`CORS policy: Origin '${origin}' is not allowed`), false);
     },
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Add allowed HTTP methods here
-    allowedHeaders: ['Content-Type', 'Authorization'],  // Add any headers you want to support
-    credentials: true  // If you need to send cookies, etc.
   })
 );
-
-// Ensure your server is handling preflight requests (OPTIONS)
-app.options('*', cors());
 
 
 
